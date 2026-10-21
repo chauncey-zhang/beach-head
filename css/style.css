@@ -21,24 +21,24 @@ html, body {
 }
 #game {
   display: block;
-  width: 100vw;
-  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   cursor: crosshair;
   background: #000;
   touch-action: none;
   -ms-touch-action: none;
 }
-#rotate-tip {
-  position: fixed;
-  inset: 0;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 20px;
-  background: #111;
-  z-index: 10;
-}
+/* 竖屏时把画面旋转 90° 铺满，内部仍按横屏比例渲染，忽略物理横竖屏切换 */
 @media (orientation: portrait) and (max-width: 900px) {
-  #rotate-tip { display: flex; }
+  #game {
+    width: 100vh;
+    height: 100vw;
+    top: 0;
+    left: 100vw;
+    transform: rotate(90deg);
+    transform-origin: top left;
+  }
 }
